@@ -15,7 +15,8 @@
     poster="{{ $poster }}"
     class="w-full h-auto"
     loop
-    muted>
+    muted
+    controls>
   </video>
 
   <div class="px-20 mt-10">

@@ -19,3 +19,4 @@ yarn-error.log
 INSTALL.txt
 /public/robots.txt
 /public/video
+/dist

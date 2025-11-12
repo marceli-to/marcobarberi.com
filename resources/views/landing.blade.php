@@ -1,6 +1,7 @@
 @extends('app')
 @section('content')
 <x-swiper.wrapper>
+
   <x-swiper.slide>
     <x-showcase
       title="Jill"
@@ -11,9 +12,9 @@
         ['label' => 'Cast', 'text' => 'Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur'],
         ['label' => 'Production', 'text' => 'Hugofilm Features'],
         ['label' => 'Director', 'text' => 'Steven Hayes'],
-      ]"
-    />
+      ]" />
   </x-swiper.slide>
+
   <x-swiper.slide>
     <x-showcase
       title="An Extraordinary Long Title"
@@ -24,8 +25,8 @@
         ['label' => 'Cast', 'text' => 'Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur'],
         ['label' => 'Production', 'text' => 'Hugofilm Features'],
         ['label' => 'Director', 'text' => 'Steven Hayes'],
-      ]"
-    />
+      ]" />
   </x-swiper.slide>
+  
 </x-swiper>
 @endsection

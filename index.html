@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="de" class="scroll-smooth">
+<html lang="de" class="scroll-smooth overflow-y-scroll">
 <head>
 <title>Marco Barberi</title>
 <meta charset="utf-8">
@@ -109,23 +109,24 @@
         src="/src/video/jill-trailer.mp4"
         poster="/src/video/jill-trailer.jpg"
         loop
-        muted
-        >
+        muted>
       </video>
 
       <div class="px-20 mt-10 lg:flex">
 
         <div class="flex w-full justify-between">
           <h2>Jill</h2>
-          <button @click="open = !open">
-            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button @click="open = !open" class="cursor-pointer">
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" :class="{ '-rotate-45 transition-transform': open }">
               <path d="M0 17.2422H34.484" stroke="#707070"/>
               <path d="M17.2417 0L17.2417 34.484" stroke="#707070"/>
             </svg>
           </button>
         </div>
 
-        <div x-show="open" x-cloak>
+        <div 
+          x-show="open" 
+          x-cloak>
           <div class="text-lg leading-none mb-30">
             <em>CH / CA 2022</em>
           </div>
@@ -167,16 +168,15 @@
         src="/src/video/on-high-sea.mp4"
         poster="/src/video/on-high-sea.jpg"
         loop
-        muted
-        >
+        muted>
       </video>
 
       <div class="px-20 mt-10">
 
         <div class="flex w-full justify-between items-start">
           <h2>An Extraordinary Long Title</h2>
-          <button @click="open = !open">
-            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <button @click="open = !open" class="cursor-pointer">
+            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" :class="{ '-rotate-45 transition-transform': open }">
               <path d="M0 17.2422H34.484" stroke="#707070"/>
               <path d="M17.2417 0L17.2417 34.484" stroke="#707070"/>
             </svg>

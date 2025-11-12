@@ -275,10 +275,32 @@
   --spacing-250: 15.625rem;
 }
 
+[x-cloak] {
+  @apply !hidden;
+}
+
 em {
   @apply text-smoke not-italic;
 }
 
-[x-cloak] {
-  @apply !hidden;
+article {
+  @apply mb-60;
 }
+
+article h2 {
+  @apply text-xl leading-[1.06] mb-6;
+}
+
+article video {
+  @apply w-full h-auto;
+}
+
+article button {
+  @apply shrink-0;
+}
+
+article button svg {
+  @apply block w-35 h-35;
+}
+
+

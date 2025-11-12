@@ -4,59 +4,111 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static website for Marco Barberi built with Vite, Tailwind CSS 4, and Alpine.js.
+This is a Laravel 12 application (marcobarberi.com) - a minimal portfolio/showcase website for film and video projects. Built with Livewire components, Tailwind CSS, and Alpine.js, focusing on a clean, component-based architecture.
 
-## Tech Stack
+## Development Commands
 
-- **Vite 5.4.2** - Build tool and dev server
-- **Tailwind CSS 4** - Utility-first CSS framework (via PostCSS)
-- **Alpine.js 3.15.1** - Lightweight JavaScript framework
-- **PostCSS** - CSS processing with Autoprefixer
-
-## Common Commands
-
+### Setup
 ```bash
-# Development
-npm run dev          # Start dev server at http://localhost:3000
-
-# Production
-npm run build        # Build for production to dist/
-npm run preview      # Preview production build locally
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
 ```
 
-## Project Structure
+### Development
+```bash
+# Start development server
+php artisan serve
 
+# Frontend development (Vite)
+npm run dev
+
+# Watch for changes
+npm run watch
+
+# Build for production
+npm run build
 ```
-marcobarberi.com/
-├── index.html           # Main HTML entry point
-├── src/
-│   ├── js/
-│   │   └── app.js      # Main JS entry - imports CSS and initializes Alpine.js
-│   ├── css/
-│   │   └── app.css     # Main CSS - Tailwind imports, fonts, and theme config
-│   └── fonts/          # Custom font files
-├── public/             # Static assets served as-is
-├── vite.config.js      # Vite configuration
-└── postcss.config.js   # PostCSS with Tailwind and Autoprefixer
+
+### Testing
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test suite
+php artisan test --testsuite=Feature
+php artisan test --testsuite=Unit
+
+# Run single test file
+php artisan test tests/Feature/ExampleTest.php
 ```
 
-## Architecture Notes
+### Code Quality
+```bash
+# Format code with Laravel Pint
+./vendor/bin/pint
 
-### CSS Architecture
-- Tailwind CSS 4 is configured via PostCSS (not the Vite plugin)
-- Custom fonts are loaded via `@font-face` in `src/css/app.css`
-- Tailwind theme customization uses `@theme` directive in CSS
-- Custom colors and fonts are defined in `app.css` using CSS variables
+# Run specific file
+./vendor/bin/pint path/to/file.php
+```
 
-### JavaScript Architecture
-- Alpine.js is initialized globally in `src/js/app.js`
-- `window.Alpine` is exposed for global access
-- CSS is imported from `../css/app.css` in the JS entry point
+### Cache Management
+```bash
+# Clear all caches
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
 
-### Build Configuration
-- Vite uses default configuration (minimal setup in `vite.config.js`)
-- PostCSS handles Tailwind CSS processing and autoprefixing
-- HTML references `/src/js/app.js` which Vite processes automatically
+# Optimize for production
+php artisan optimize
+```
 
-### Language
-The site is configured for German (`lang="de"` in HTML)
+## Architecture
+
+### Directory Structure
+
+- **resources/views/** - Blade templates and views
+  - `app.blade.php` - Main layout file
+  - `landing.blade.php` - Home page with film showcases
+  - **components/** - Reusable Blade components
+    - `showcase.blade.php` - Film/video showcase component with expandable details
+    - **layout/** - Layout-related components
+
+- **resources/css/** - Stylesheets
+  - `app.css` - Main Tailwind CSS file with custom styles
+
+- **routes/** - Application routes
+  - `web.php` - Web routes (currently just home route to landing view)
+
+### Key Patterns
+
+**Component-Based Architecture**
+- Reusable Blade components for UI elements
+- Components are self-contained with inline Tailwind classes
+- Example: `<x-showcase>` component for film/video presentations
+
+**Showcase Component Pattern**
+The `showcase.blade.php` component demonstrates the project's approach:
+- Props: `title`, `src`, `poster`, `info`, `data` (array of label/text pairs)
+- Alpine.js for interactive state management (collapsible details)
+- Tailwind utility classes applied directly to elements
+- Loop-based rendering for flexible data structures
+
+### Frontend Stack
+
+- **Laravel 12** - Latest Laravel framework
+- **Vite** - Modern asset bundler
+- **Tailwind CSS** - Utility-first CSS framework
+- **Alpine.js** - Lightweight JavaScript framework for interactivity
+- **Livewire v3.5** - Real-time components (installed but not currently used)
+- Blade templating engine
+
+## Important Notes
+
+- Minimal application with no database, authentication, or backend logic
+- Focus on clean, maintainable component architecture
+- All styling uses Tailwind CSS utility classes
+- Alpine.js handles client-side interactivity
+- Single route application (home page only)

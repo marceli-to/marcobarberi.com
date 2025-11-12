@@ -1,0 +1,24 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-C8O1HAn3.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/css/fonts/SharpSans-Medium.woff": {
+    "file": "assets/SharpSans-Medium-759ihkmp.woff",
+    "src": "resources/css/fonts/SharpSans-Medium.woff"
+  },
+  "resources/css/fonts/SharpSans-Medium.woff2": {
+    "file": "assets/SharpSans-Medium-CC4JqY9Z.woff2",
+    "src": "resources/css/fonts/SharpSans-Medium.woff2"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-AN19ZKWe.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "css": [
+      "assets/app-B0gYqcdL.css"
+    ]
+  }
+}

@@ -7,7 +7,8 @@
     z-50
     text-md 
     px-20 
-    lg:px-50
+    lg:pr-34
+    lg:pl-38
     w-full
     h-[calc(100dvh_-_var(--header-h-sm))]
     lg:h-[calc(100dvh_-_var(--header-h-lg))]

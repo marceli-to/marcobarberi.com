@@ -3,7 +3,7 @@
 
 <div class="relative">
 
-  <x-swiper.wrapper class="bg-yellow-100">
+  <x-swiper.wrapper>
 
     <x-swiper.slide>
       <x-showcase

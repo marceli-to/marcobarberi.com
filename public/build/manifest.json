@@ -13,12 +13,12 @@
     "src": "resources/css/fonts/SharpSans-Medium.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DvkXsU87.js",
+    "file": "assets/app-Cgtk-Lb2.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "css": [
-      "assets/app-B0gYqcdL.css"
+      "assets/app-Dsb6oYJR.css"
     ]
   }
 }

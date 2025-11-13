@@ -1,7 +1,8 @@
 import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
+import { Navigation, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
 
 const BREAKPOINT = 1024;
 const SWIPER_SELECTOR = '.swiper';
@@ -37,8 +38,12 @@ function initSwiper() {
   // Create swiper
   if (isDesktop && !swiper) {
     swiper = new Swiper(SWIPER_SELECTOR, {
-      modules: [Navigation],
+      modules: [Navigation, EffectFade],
       loop: true,
+      effect: "fade",
+      fadeEffect: {
+        crossFade: true,
+      },
       navigation: {
         nextEl: '.swiper-btn-next',
         prevEl: '.swiper-btn-prev',

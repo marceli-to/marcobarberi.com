@@ -3,7 +3,9 @@
   'src' => '',
   'poster' => '',
   'info' => '',
-  'data' => [],
+  'cast' => '',
+  'production' => '',
+  'director' => '',
 ])
 
 <article 
@@ -19,15 +21,30 @@
     controls>
   </video>
 
-  <div class="px-20 mt-10">
+  <div class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative">
 
-    <div class="flex w-full justify-between items-start">
+    <div class="flex w-full lg:flex-col lg:w-auto lg:min-w-[16rem] 2xl:min-w-[24rem] justify-between lg:justify-start items-start">
 
-      <h2 class="text-xl leading-[1.06] mb-6">{{ $title }}</h2>
+      <h2 class="text-xl leading-[1.06] mb-6 lg:w-auto">
+        {{ $title }}
+      </h2>
+      
+      <div 
+        x-show="show_info"
+        x-cloak
+        class="text-lg leading-none hidden lg:block">
+        <em>{{ $info }}</em>
+      </div>
 
       <button
         x-on:click="show_info = !show_info"
-        class="cursor-pointer shrink-0">
+        class="
+          cursor-pointer 
+          shrink-0 
+          lg:absolute
+          lg:right-0
+          lg:top-0
+          lg:z-50">
 
         <svg
           width="35"
@@ -48,24 +65,47 @@
       x-show="show_info"
       x-cloak>
 
-      <div class="text-lg leading-none mb-30">
+      <div class="text-lg leading-none mb-30 lg:hidden">
         <em>{{ $info }}</em>
       </div>
 
-      <div class="flex flex-col gap-y-16">
+      <div class="flex flex-col lg:flex-row gap-y-16 lg:pl-60 lg:pr-40">
 
-        @foreach($data as $d)
-
-          <div>
+        @if($cast)
+          <div class="lg:order-2 lg:pl-40">
             <label class="text-sm">
-              <em>{{ $d['label'] }}</em>
+              <em>Cast</em>
             </label>
             <div class="text-md leading-[1.31]">
-              {!! $d['text'] !!}
+              {!! $cast !!}
             </div>
           </div>
+        @endif
 
-        @endforeach
+        <div class="lg:flex lg:flex-col lg:gap-y-16 lg:order-1 lg:pr-40">
+
+          @if($production)
+            <div class="lg:order-2">
+              <label class="text-sm">
+                <em>Production</em>
+              </label>
+              <div class="text-md leading-[1.31]">
+                {!! $production !!}
+              </div>
+            </div>
+          @endif
+
+          @if($director)
+            <div class="lg:order-1">
+              <label class="text-sm">
+                <em>Director</em>
+              </label>
+              <div class="text-md leading-[1.31]">
+                {!! $director !!}
+              </div>
+            </div>
+          @endif
+        </div>
 
       </div>
 

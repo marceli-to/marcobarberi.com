@@ -16,8 +16,8 @@ function initSwiper() {
       modules: [Navigation],
       loop: true,
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-btn-next',
+        prevEl: '.swiper-btn-prev',
       },
     });
     return;

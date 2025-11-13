@@ -8,7 +8,7 @@
 
 <article 
   x-data="{ show_info: false }" 
-  class="mb-60">
+  class="mb-60 lg:mb-0 lg:relative">
 
   <video
     src="{{ $src }}"

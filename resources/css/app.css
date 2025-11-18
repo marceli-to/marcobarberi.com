@@ -284,3 +284,14 @@
 em {
   @apply text-smoke not-italic;
 }
+
+/* Remove poster on large screens by loading video immediately */
+@media (min-width: 1024px) {
+  .showcase-video {
+    object-fit: cover;
+  }
+
+  .showcase-video[poster] {
+    background: transparent;
+  }
+}

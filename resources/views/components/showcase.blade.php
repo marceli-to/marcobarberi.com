@@ -9,23 +9,25 @@
   'director' => '',
 ])
 
-<article 
-  x-data="{ show_info: false }" 
+<article
+  x-data="{ show_info: false }"
   class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between">
 
   <video
     src="{{ $src }}"
     poster="{{ $poster }}"
-    class="w-full h-auto {{ $aspect }}"
+    class="w-full h-auto {{ $aspect }} showcase-video"
+    :class="{ 'pointer-events-none': show_info }"
     _class="w-auto h-[600px]"
     loop
     muted
+    playsinline
     controls>
   </video>
 
-  <div class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative">
+  <div class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative swiper-no-swiping">
 
-    <div class="flex w-full lg:flex-col lg:w-1/2 justify-between lg:justify-start items-start">
+    <div class="flex w-full lg:flex-col lg:w-1/2 justify-between lg:justify-start items-start swiper-no-swiping">
 
       <h2 class="text-xl leading-[1.06] mb-6 lg:w-auto">
         {{ $title }}
@@ -77,7 +79,8 @@
       x-transition:enter-end="opacity-100"
       x-transition:leave="transition ease-in duration-0"
       x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0">
+      x-transition:leave-end="opacity-0"
+      class="swiper-no-swiping">
 
       <div class="text-lg leading-none mb-30 lg:hidden">
         <em>{{ $info }}</em>

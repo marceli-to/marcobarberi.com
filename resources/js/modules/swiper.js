@@ -13,6 +13,9 @@ const nextBtn = document.querySelector('.swiper-btn-next');
 
 let swiper = null;
 
+// Store original poster URLs for each video
+const videoPosterMap = new Map();
+
 // -------------------------------------------------------
 // Update button positions
 // -------------------------------------------------------
@@ -30,6 +33,58 @@ function updateButtonPosition() {
 }
 
 // -------------------------------------------------------
+// Handle video playback on slide change
+// -------------------------------------------------------
+function handleVideoPlayback() {
+  if (!swiper) return;
+
+  // Pause and reset all videos
+  const allVideos = document.querySelectorAll('.showcase-video');
+  allVideos.forEach(video => {
+    video.pause();
+    video.currentTime = 0; // Reset to beginning
+  });
+
+  // Play the active slide's video (use activeIndex for loop mode)
+  const activeSlide = swiper.slides[swiper.activeIndex];
+  const activeVideo = activeSlide?.querySelector('.showcase-video');
+
+  if (activeVideo) {
+    // Remove poster attribute on desktop to prevent it from showing
+    activeVideo.removeAttribute('poster');
+
+    // Play the video
+    activeVideo.play().catch(err => {
+      console.log('Autoplay prevented:', err);
+    });
+  }
+}
+
+// -------------------------------------------------------
+// Store poster URLs before removing them
+// -------------------------------------------------------
+function storePosterUrls() {
+  const allVideos = document.querySelectorAll('.showcase-video');
+  allVideos.forEach(video => {
+    const posterUrl = video.getAttribute('poster');
+    if (posterUrl && !videoPosterMap.has(video)) {
+      videoPosterMap.set(video, posterUrl);
+    }
+  });
+}
+
+// -------------------------------------------------------
+// Restore poster URLs
+// -------------------------------------------------------
+function restorePosterUrls() {
+  videoPosterMap.forEach((posterUrl, video) => {
+    video.setAttribute('poster', posterUrl);
+    video.pause();
+    video.currentTime = 0;
+  });
+}
+
+// -------------------------------------------------------
 // Create or destroy swiper depending on breakpoint
 // -------------------------------------------------------
 function initSwiper() {
@@ -37,6 +92,9 @@ function initSwiper() {
 
   // Create swiper
   if (isDesktop && !swiper) {
+    // Store poster URLs before we start removing them
+    storePosterUrls();
+
     swiper = new Swiper(SWIPER_SELECTOR, {
       modules: [Navigation, EffectFade],
       loop: true,
@@ -49,8 +107,14 @@ function initSwiper() {
         prevEl: '.swiper-btn-prev',
       },
       on: {
-        // init: () => setTimeout(updateButtonPosition, 0),
-        // slideChange: updateButtonPosition,
+        init: () => {
+          // setTimeout(updateButtonPosition, 0);
+          setTimeout(handleVideoPlayback, 0);
+        },
+        slideChange: () => {
+          // updateButtonPosition();
+          handleVideoPlayback();
+        },
       },
     });
 
@@ -61,6 +125,9 @@ function initSwiper() {
   if (!isDesktop && swiper) {
     swiper.destroy(true, true);
     swiper = null;
+
+    // Restore poster attributes on mobile
+    restorePosterUrls();
   }
 }
 

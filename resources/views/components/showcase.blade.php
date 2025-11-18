@@ -10,7 +10,9 @@
   'director' => '',
 ])
 
-<article class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between">
+<article 
+  class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between" 
+  x-data="{ show_info: false }">
 
   <video
     poster="{{ $poster }}"
@@ -25,8 +27,7 @@
     <source src="{{ $src_low }}" type="video/mp4">
   </video>
 
-  <div 
-    x-data="{ show_info: false }"
+  <div
     class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative swiper-no-swiping">
 
     <div class="flex w-full lg:flex-col lg:w-1/2 justify-between lg:justify-start items-start swiper-no-swiping">

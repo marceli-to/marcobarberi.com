@@ -49,8 +49,8 @@ function initSwiper() {
         prevEl: '.swiper-btn-prev',
       },
       on: {
-        init: () => setTimeout(updateButtonPosition, 0),
-        slideChange: updateButtonPosition,
+        // init: () => setTimeout(updateButtonPosition, 0),
+        // slideChange: updateButtonPosition,
       },
     });
 
@@ -80,7 +80,7 @@ const debounce = (fn, delay = 200) => {
 // -------------------------------------------------------
 const onResize = debounce(() => {
   initSwiper();
-  updateButtonPosition();
+  // updateButtonPosition();
 }, 100);
 
 initSwiper();

@@ -23,7 +23,7 @@
         Marco Barberi
       </h1>
 
-      <div class="lg:grow lg:relative lg:top-4 lg:pl-44 flex justify-between">
+      <div class="text-lg lg:grow lg:relative lg:top-4 lg:pl-44 flex justify-between">
         <div>
           <em>D.o.P. / S.C.S.</em>
         </div>

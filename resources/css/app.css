@@ -16,10 +16,12 @@
   --text-xl: 1.875rem; /* 30px */
   --leading-normal: 1.1875;
   --color-smoke: #919191;
-  --max-w-container: 85.375rem; /*1366px */ 
+  --max-w-container: 100rem; /* 1600px */ 
   --max-w-nav-lg: 23.25rem; /* 372px */
   --header-h-sm: 10rem; /* 160px */
   --header-h-lg: 5.625rem; /* 90px */
+
+  --breakpoint-2xl: 107.5rem;
 
   /* Custom spacing scale */
   --spacing-0: 0rem;

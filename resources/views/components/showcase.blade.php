@@ -1,6 +1,7 @@
 @props([
   'title' => '',
   'src' => '',
+  'aspect' => 'aspect-[16/9]',
   'poster' => '',
   'info' => '',
   'cast' => '',
@@ -10,12 +11,13 @@
 
 <article 
   x-data="{ show_info: false }" 
-  class="mb-60 lg:mb-0 lg:relative">
+  class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between">
 
   <video
     src="{{ $src }}"
     poster="{{ $poster }}"
-    class="w-full h-auto"
+    class="w-full h-auto {{ $aspect }}"
+    _class="w-auto h-[600px]"
     loop
     muted
     controls>
@@ -23,7 +25,7 @@
 
   <div class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative">
 
-    <div class="flex w-full lg:flex-col lg:w-auto lg:min-w-[16rem] 2xl:min-w-[24rem] justify-between lg:justify-start items-start">
+    <div class="flex w-full lg:flex-col lg:w-1/2 justify-between lg:justify-start items-start">
 
       <h2 class="text-xl leading-[1.06] mb-6 lg:w-auto">
         {{ $title }}
@@ -32,6 +34,12 @@
       <div 
         x-show="show_info"
         x-cloak
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-0"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
         class="text-lg leading-none hidden lg:block">
         <em>{{ $info }}</em>
       </div>
@@ -63,13 +71,19 @@
 
     <div
       x-show="show_info"
-      x-cloak>
+      x-cloak
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-0"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0">
 
       <div class="text-lg leading-none mb-30 lg:hidden">
         <em>{{ $info }}</em>
       </div>
 
-      <div class="flex flex-col lg:flex-row gap-y-16 lg:pl-60 lg:pr-40">
+      <div class="flex flex-col lg:flex-row gap-y-16 lg:pr-40">
 
         @if($cast)
           <div class="lg:order-2 lg:pl-40">

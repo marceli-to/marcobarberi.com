@@ -8,7 +8,8 @@
     <x-swiper.slide>
       <x-showcase
         title="Jill"
-        src="/video/jill-trailer.mp4"
+        src_high="/video/jill-trailer.mp4"
+        src_low="/video/jill-trailer-720p.mp4"
         aspect="aspect-[1920/790]"
         poster="/video/jill-trailer.jpg"
         info="CH / CA 2022"
@@ -20,7 +21,8 @@
     <x-swiper.slide>
       <x-showcase
         title="An Extraordinary Long Title"
-        src="/video/on-high-sea.mp4"
+        src_high="/video/on-high-sea.mp4"
+        src_low="/video/on-high-sea-720p.mp4"
         aspect="aspect-[1920/880]"
         poster="/video/on-high-sea.jpg"
         info="CH / CA 2022"

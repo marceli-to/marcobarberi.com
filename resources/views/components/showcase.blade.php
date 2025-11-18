@@ -1,6 +1,7 @@
 @props([
   'title' => '',
-  'src' => '',
+  'src_high' => '',
+  'src_low' => '',
   'aspect' => 'aspect-[16/9]',
   'poster' => '',
   'info' => '',
@@ -9,12 +10,9 @@
   'director' => '',
 ])
 
-<article
-  x-data="{ show_info: false }"
-  class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between">
+<article class="mb-60 lg:mb-0 lg:relative _flex _flex-col _justify-between">
 
   <video
-    src="{{ $src }}"
     poster="{{ $poster }}"
     class="w-full h-auto {{ $aspect }} showcase-video"
     :class="{ 'pointer-events-none': show_info }"
@@ -23,9 +21,13 @@
     muted
     playsinline
     controls>
+    <source src="{{ $src_high }}" media="(min-width: 1024px)" type="video/mp4">
+    <source src="{{ $src_low }}" type="video/mp4">
   </video>
 
-  <div class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative swiper-no-swiping">
+  <div 
+    x-data="{ show_info: false }"
+    class="px-20 mt-10 lg:mt-20 lg:px-0 lg:flex lg:relative swiper-no-swiping">
 
     <div class="flex w-full lg:flex-col lg:w-1/2 justify-between lg:justify-start items-start swiper-no-swiping">
 
@@ -33,9 +35,9 @@
         {{ $title }}
       </h2>
       
-      <div 
+      <div
+        x-collapse
         x-show="show_info"
-        x-cloak
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0"
         x-transition:enter-end="opacity-100"
@@ -72,8 +74,8 @@
     </div>
 
     <div
+      x-collapse
       x-show="show_info"
-      x-cloak
       x-transition:enter="transition ease-out duration-300"
       x-transition:enter-start="opacity-0"
       x-transition:enter-end="opacity-100"

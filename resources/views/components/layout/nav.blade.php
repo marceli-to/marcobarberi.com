@@ -38,31 +38,41 @@
     </div>
   </div>
   <div class="mb-74">
-    <div>
+    <span class="block">
       IMDB
-    </div>
-    <div>
+    </span>
+    <a 
+      href="mailto:icanplaybetterbass@me.com"
+      class="no-underline hover:underline underline-offset-1 decoration-1">
       icanplaybetterbass@me.com
-    </div>
-    <div>
+    </a>
+    <span class="block">
       +41 76 377 21 97
-    </div>
+    </span>
   </div>
   <div class="mb-16">
-    <div>
+    <span class="block">
       <em>Agency for Directors of Photography</em>
-    </div>
-    <div>
+    </span>
+    <span class="block">
       Sarida Bossoni
-    </div>
+    </span>
   </div>
   <div>
-    <div>
+    <a 
+      href="https://saridabossoni.com"
+      class="no-underline hover:underline underline-offset-1 decoration-1"
+      aria-label="saridabossoni.com"
+      rel="noopener noreferrer"
+      target="_blank">
       saridabossoni.com
-    </div>
-    <div>
+    </a>
+    <a 
+      href="mailto:welcome@saridabossoni.com"
+      class="no-underline hover:underline underline-offset-1 decoration-1"
+      aria-label="welcome@saridabossoni.com">
       welcome@saridabossoni.com
-    </div>
+    </a>
     <div>
       +41 79 279 11 99
     </div>

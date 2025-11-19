@@ -20,8 +20,7 @@
   --max-w-nav-lg: 23.25rem; /* 372px */
   --header-h-sm: 10rem; /* 160px */
   --header-h-lg: 5.625rem; /* 90px */
-
-  --breakpoint-2xl: 107.5rem;
+  --breakpoint-2xl: 90rem;
 
   /* Custom spacing scale */
   --spacing-0: 0rem;

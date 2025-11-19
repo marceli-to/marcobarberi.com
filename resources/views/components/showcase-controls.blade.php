@@ -66,7 +66,7 @@
       x-transition:leave-end="opacity-0">
 
       <template x-for="(showcase, index) in {{ json_encode($showcases) }}" :key="index">
-        <div x-show="activeSlide === index" class="flex flex-row gap-y-16 pr-40">
+        <div x-show="activeSlide === index" class="flex flex-row gap-y-16 pr-40 lg:pr-95">
           <div class="order-2 pl-40" x-show="showcase.cast">
             <label class="text-sm">
               <em>Cast</em>
@@ -74,7 +74,7 @@
             <div class="text-md leading-[1.31]" x-html="showcase.cast"></div>
           </div>
 
-          <div class="flex flex-col gap-y-16 order-1 pr-95">
+          <div class="flex flex-col gap-y-16 order-1">
             <div class="order-2" x-show="showcase.production">
               <label class="text-sm">
                 <em>Production</em>

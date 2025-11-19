@@ -1,36 +1,52 @@
 @extends('app')
 @section('content')
 
+@php
+$showcases = [
+  [
+    'title' => 'Jill',
+    'src_high' => '/video/jill-trailer.mp4',
+    'src_low' => '/video/jill-trailer-720p.mp4',
+    'aspect' => 'aspect-[1920/790]',
+    'poster' => '/video/jill-trailer.jpg',
+    'info' => 'CH / CA 2022',
+    'cast' => 'Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur',
+    'production' => 'Hugofilm&nbsp;Features',
+    'director' => 'Steven&nbsp;Hayes'
+  ],
+  [
+    'title' => 'An Extraordinary Long Title',
+    'src_high' => '/video/on-high-sea.mp4',
+    'src_low' => '/video/on-high-sea-720p.mp4',
+    'aspect' => 'aspect-[1920/880]',
+    'poster' => '/video/on-high-sea.jpg',
+    'info' => 'CH / CA 2022',
+    'cast' => 'Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur',
+    'production' => 'Hugofilm&nbsp;Features',
+    'director' => 'Steven&nbsp;Hayes'
+  ]
+];
+@endphp
+
 <div class="relative">
 
   <x-swiper.wrapper>
-
-    <x-swiper.slide>
-      <x-showcase
-        title="Jill"
-        src_high="/video/jill-trailer.mp4"
-        src_low="/video/jill-trailer-720p.mp4"
-        aspect="aspect-[1920/790]"
-        poster="/video/jill-trailer.jpg"
-        info="CH / CA 2022"
-        cast="Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur"
-        production="Hugofilm&nbsp;Features"
-        director="Steven&nbsp;Hayes" />
-    </x-swiper.slide>
-
-    <x-swiper.slide>
-      <x-showcase
-        title="An Extraordinary Long Title"
-        src_high="/video/on-high-sea.mp4"
-        src_low="/video/on-high-sea-720p.mp4"
-        aspect="aspect-[1920/880]"
-        poster="/video/on-high-sea.jpg"
-        info="CH / CA 2022"
-        cast="Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur"
-        production="Hugofilm&nbsp;Features"
-        director="Steven&nbsp;Hayes" />
-    </x-swiper.slide>
-    
+    @foreach($showcases as $showcase)
+      <x-swiper.slide>
+        <x-showcase
+          title="{{ $showcase['title'] }}"
+          src_high="{{ $showcase['src_high'] }}"
+          src_low="{{ $showcase['src_low'] }}"
+          aspect="{{ $showcase['aspect'] }}"
+          poster="{{ $showcase['poster'] }}"
+          info="{{ $showcase['info'] }}"
+          :cast="$showcase['cast']"
+          :production="$showcase['production']"
+          :director="$showcase['director']" />
+      </x-swiper.slide>
+    @endforeach
   </x-swiper.wrapper>
+
+  <x-showcase-controls :showcases="$showcases" />
 </div>
 @endsection

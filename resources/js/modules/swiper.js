@@ -17,19 +17,19 @@ let swiper = null;
 const videoPosterMap = new Map();
 
 // -------------------------------------------------------
-// Update button positions
+// Update Alpine.js slide index
 // -------------------------------------------------------
-function updateButtonPosition() {
-  if (!swiper) return;
-
-  const activeSlide = swiper.slides[swiper.activeIndex];
-  const video = activeSlide?.querySelector('video');
-  if (!video) return;
-
-  const offset = video.offsetHeight / 2;
-
-  if (prevBtn) prevBtn.style.top = `${offset}px`;
-  if (nextBtn) nextBtn.style.top = `${offset}px`;
+function updateAlpineSlideIndex(index) {
+  // Find the Alpine component and update activeSlide
+  const alpineEl = document.querySelector('[x-data*="activeSlide"]');
+  if (alpineEl && window.Alpine) {
+    Alpine.store('showcase', { activeSlide: index });
+    // Also update the component's data directly
+    const alpineData = Alpine.$data(alpineEl);
+    if (alpineData) {
+      alpineData.activeSlide = index;
+    }
+  }
 }
 
 // -------------------------------------------------------
@@ -99,6 +99,7 @@ function initSwiper() {
       modules: [Navigation, EffectFade],
       loop: true,
       effect: "fade",
+      autoHeight: true,
       fadeEffect: {
         crossFade: true,
       },
@@ -107,13 +108,16 @@ function initSwiper() {
         prevEl: '.swiper-btn-prev',
       },
       on: {
-        init: () => {
+        init: (swiperInstance) => {
           // setTimeout(updateButtonPosition, 0);
           setTimeout(handleVideoPlayback, 0);
+          // Sync with Alpine.js controls
+          updateAlpineSlideIndex(swiperInstance.realIndex);
         },
-        slideChange: () => {
-          // updateButtonPosition();
+        slideChange: (swiperInstance) => {
           handleVideoPlayback();
+          // Sync with Alpine.js controls
+          updateAlpineSlideIndex(swiperInstance.realIndex);
         },
       },
     });
@@ -147,7 +151,6 @@ const debounce = (fn, delay = 200) => {
 // -------------------------------------------------------
 const onResize = debounce(() => {
   initSwiper();
-  // updateButtonPosition();
 }, 100);
 
 initSwiper();

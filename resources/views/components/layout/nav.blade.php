@@ -38,12 +38,16 @@
     </div>
   </div>
   <div class="mb-74">
-    <span class="block">
+    <a 
+      href="https://www.imdb.com/name/nm0053510/?ref_=ext_shr_lnk" 
+      target="_blank" 
+      rel="noreferrer,noopener"
+      class="block no-underline hover:underline underline-offset-1 decoration-1">
       IMDB
-    </span>
+    </a>
     <a 
       href="mailto:icanplaybetterbass@me.com"
-      class="no-underline hover:underline underline-offset-1 decoration-1">
+      class="block no-underline hover:underline underline-offset-1 decoration-1">
       icanplaybetterbass@me.com
     </a>
     <span class="block">

@@ -295,3 +295,13 @@ em {
     background: transparent;
   }
 }
+
+/* State when fullscreen is active */
+video:fullscreen {
+  object-fit: contain; /* Ensure it looks perfect when maximized */
+}
+
+/* Webkit vendor prefix (for Safari/Chrome compatibility) */
+video:-webkit-full-screen {
+  object-fit: contain;
+}

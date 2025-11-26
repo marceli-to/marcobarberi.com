@@ -21,7 +21,8 @@
     loop
     muted
     playsinline
-    controls>
+    controls
+    controlslist="nodownload noremoteplayback">
     <source src="{{ $src_high }}" media="(min-width: 1024px)" type="video/mp4">
     <source src="{{ $src_low }}" type="video/mp4">
   </video>

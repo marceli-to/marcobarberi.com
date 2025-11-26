@@ -15,15 +15,15 @@ $showcases = [
     'director' => 'Steven&nbsp;Hayes'
   ],
   [
-    'title' => 'An Extraordinary Long Title',
-    'src_high' => '/video/on-high-sea.mp4',
-    'src_low' => '/video/on-high-sea-720p.mp4',
+    'title' => 'On the High Seas',
+    'src_high' => '/video/on-high-seas.mp4',
+    'src_low' => '/video/on-high-seas-720p.mp4',
     'aspect' => 'aspect-[1920/880]',
-    'poster' => '/video/on-high-sea.jpg',
-    'info' => 'CH / CA 2022',
-    'cast' => 'Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Garret&nbsp;Wareing, Zackary&nbsp;Arthur',
-    'production' => 'Hugofilm&nbsp;Features',
-    'director' => 'Steven&nbsp;Hayes'
+    'poster' => '/video/on-high-seas.jpg',
+    'info' => 'CH / ES 2024',
+    'cast' => 'Maud&nbsp;Wyler, Michael&nbsp;Neuenschwander, Carlos&nbsp;Bardem, Isaline&nbsp;Prévost, Nicola&nbsp;Perot, Maël&nbsp;Cordier',
+    'production' => 'Alva&nbsp;Film<br>Galea&nbsp;Katz&nbsp;Filmleak',
+    'director' => 'Denis&nbsp;Rabaglia'
   ]
 ];
 @endphp

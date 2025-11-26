@@ -4,7 +4,8 @@
 
 <div class="hidden lg:block mt-20 px-0 relative" x-data="{ activeSlide: 0, show_info: false }">
   <div class="flex relative">
-    <div class="flex flex-col w-1/2 justify-start items-start">
+    <div class="flex flex-col w-1/2 2xl:w-1/3 pr-10 justify-start items-start">
+
       <template x-for="(showcase, index) in {{ json_encode($showcases) }}" :key="index">
         <h2
           x-show="activeSlide === index"
@@ -28,7 +29,7 @@
         </template>
       </div>
 
-      <div class="flex gap-x-15 absolute right-0 min-w-auto z-10">
+      <div class="flex items-center gap-x-10 absolute right-0 min-w-auto z-10">
         <button
           @click.stop.prevent="show_info = !show_info"
           type="button"
@@ -45,11 +46,11 @@
           </svg>
         </button>
 
-        <x-swiper.button class="block w-auto h-35 swiper-btn-prev">
+        <x-swiper.button class="block w-auto h-32 swiper-btn-prev">
           <x-icons.chevron-left class="w-auto h-full" />
         </x-swiper.button>
 
-        <x-swiper.button class="block w-auto h-35 swiper-btn-next">
+        <x-swiper.button class="block w-auto h-32 swiper-btn-next">
           <x-icons.chevron-right class="w-auto h-full" />
         </x-swiper.button>
       </div>
@@ -63,31 +64,34 @@
       x-transition:enter-end="opacity-100"
       x-transition:leave="transition ease-in duration-0"
       x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0">
+      x-transition:leave-end="opacity-0"
+      class="w-1/2 2xl:w-2/3">
 
       <template x-for="(showcase, index) in {{ json_encode($showcases) }}" :key="index">
-        <div x-show="activeSlide === index" class="flex flex-row gap-y-16 pr-40">
-          <div class="order-2 pl-40" x-show="showcase.cast">
+        <div x-show="activeSlide === index" class="flex flex-row gap-y-16 pr-40 lg:pr-105">
+          <div class="order-2" x-show="showcase.cast">
             <label class="text-sm">
               <em>Cast</em>
             </label>
-            <div class="text-md leading-[1.31]" x-html="showcase.cast"></div>
+            <div class="text-md leading-[1.3]" x-html="showcase.cast"></div>
           </div>
 
-          <div class="flex flex-col gap-y-16 order-1 pr-95">
-            <div class="order-2" x-show="showcase.production">
+          <div class="flex flex-col gap-y-16 order-1">
+
+            <div class="order-2 pr-40" x-show="showcase.production">
               <label class="text-sm">
                 <em>Production</em>
               </label>
-              <div class="text-md leading-[1.31]" x-html="showcase.production"></div>
+              <div class="text-md leading-[1.3]" x-html="showcase.production"></div>
             </div>
 
-            <div class="order-1" x-show="showcase.director">
+            <div class="order-1 pr-40" x-show="showcase.director">
               <label class="text-sm">
                 <em>Director</em>
               </label>
-              <div class="text-md leading-[1.31]" x-html="showcase.director"></div>
+              <div class="text-md leading-[1.3]" x-html="showcase.director"></div>
             </div>
+
           </div>
         </div>
       </template>

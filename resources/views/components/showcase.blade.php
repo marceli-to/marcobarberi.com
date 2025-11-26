@@ -71,7 +71,7 @@
             <label class="text-sm">
               <em>Cast</em>
             </label>
-            <div class="text-md leading-[1.31]">
+            <div class="text-md leading-[1.3]">
               {!! $cast !!}
             </div>
           </div>
@@ -82,7 +82,7 @@
             <label class="text-sm">
               <em>Production</em>
             </label>
-            <div class="text-md leading-[1.31]">
+            <div class="text-md leading-[1.3]">
               {!! $production !!}
             </div>
           </div>
@@ -93,7 +93,7 @@
             <label class="text-sm">
               <em>Director</em>
             </label>
-            <div class="text-md leading-[1.31]">
+            <div class="text-md leading-[1.3]">
               {!! $director !!}
             </div>
           </div>

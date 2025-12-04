@@ -14,18 +14,16 @@
   class="mb-60 lg:mb-0 lg:relative" 
   x-data="{ show_info: false }">
 
-  <video
-    poster="{{ $poster }}"
-    class="w-full h-auto {{ $aspect }} showcase-video"
-    :class="{ 'pointer-events-none': show_info }"
-    loop
-    muted
-    playsinline
-    controls
-    controlslist="nodownload noremoteplayback">
-    <source src="{{ $src_high }}" media="(min-width: 1024px)" type="video/mp4">
-    <source src="{{ $src_low }}" type="video/mp4">
-  </video>
+  <div :class="{ 'pointer-events-none': show_info }">
+    <x-video-player
+      :src_high="$src_high"
+      :src_low="$src_low"
+      :aspect="$aspect"
+      :poster="$poster"
+      :loop="true"
+      :muted="true"
+    />
+  </div>
 
   {{-- Mobile only version --}}
   <div class="px-20 mt-10 lg:hidden">

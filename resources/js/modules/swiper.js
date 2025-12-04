@@ -43,6 +43,9 @@ function handleVideoPlayback() {
   allVideos.forEach(video => {
     video.pause();
     video.currentTime = 0; // Reset to beginning
+
+    // Dispatch custom event for Alpine.js to sync state
+    video.dispatchEvent(new Event('pause'));
   });
 
   // Play the active slide's video (use activeIndex for loop mode)

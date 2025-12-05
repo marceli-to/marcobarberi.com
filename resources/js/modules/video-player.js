@@ -144,9 +144,11 @@ export class VideoPlayer {
         this.#video.load();
         this.#video.addEventListener('loadeddata', () => {
           this.#video.webkitEnterFullscreen();
+          this.play();
         }, { once: true });
       } else {
         this.#video.webkitEnterFullscreen();
+        this.play();
       }
       return;
     }

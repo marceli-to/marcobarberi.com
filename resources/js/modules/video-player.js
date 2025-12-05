@@ -139,7 +139,15 @@ export class VideoPlayer {
   #toggleFullscreen() {
     // iOS Safari uses webkitEnterFullscreen on the video element
     if (this.#video.webkitEnterFullscreen) {
-      this.#video.webkitEnterFullscreen();
+      // iOS requires video to be loaded before fullscreen works
+      if (this.#video.readyState < 2) {
+        this.#video.load();
+        this.#video.addEventListener('loadeddata', () => {
+          this.#video.webkitEnterFullscreen();
+        }, { once: true });
+      } else {
+        this.#video.webkitEnterFullscreen();
+      }
       return;
     }
 

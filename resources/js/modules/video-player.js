@@ -137,6 +137,13 @@ export class VideoPlayer {
   }
 
   #toggleFullscreen() {
+    // iOS Safari uses webkitEnterFullscreen on the video element
+    if (this.#video.webkitEnterFullscreen) {
+      this.#video.webkitEnterFullscreen();
+      return;
+    }
+
+    // Standard Fullscreen API for other browsers
     if (!document.fullscreenElement && !document.webkitFullscreenElement) {
       if (this.#video.requestFullscreen) {
         this.#video.requestFullscreen();

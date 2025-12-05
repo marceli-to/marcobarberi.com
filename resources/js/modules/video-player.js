@@ -139,6 +139,11 @@ export class VideoPlayer {
   #toggleFullscreen() {
     // iOS Safari uses webkitEnterFullscreen on the video element
     if (this.#video.webkitEnterFullscreen) {
+      // Listen for fullscreen exit to fix viewport zoom bug
+      this.#video.addEventListener('webkitendfullscreen', () => {
+        this.#resetViewport();
+      }, { once: true });
+
       // iOS requires video to be loaded before fullscreen works
       if (this.#video.readyState < 2) {
         this.#video.load();
@@ -174,6 +179,18 @@ export class VideoPlayer {
     const rect = this.#progressTrack.getBoundingClientRect();
     const pos = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
     this.#video.currentTime = pos * this.#video.duration;
+  }
+
+  #resetViewport() {
+    // Fix iOS Safari viewport zoom bug after fullscreen exit
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (viewport) {
+      const original = viewport.getAttribute('content');
+      viewport.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1');
+      setTimeout(() => {
+        viewport.setAttribute('content', original);
+      }, 100);
+    }
   }
 
   #handleTouch(event) {

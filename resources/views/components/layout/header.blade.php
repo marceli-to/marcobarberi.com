@@ -20,7 +20,9 @@
     <div class="lg:flex lg:items-end">
 
       <h1 class="text-xl leading-none">
-        <a href="{{ route('landing') }}" aria-label="Homepage">Marco Barberi</a>
+        <a href="/" aria-label="Homepage">
+          Marco Barberi
+        </a>
       </h1>
 
       <div class="text-lg lg:grow lg:relative lg:top-4 lg:pl-44 flex justify-between">

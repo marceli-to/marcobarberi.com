@@ -34,13 +34,12 @@
             class="hover:text-black transition-colors {{ request()->routeIs('about') ? 'text-black' : '' }}">
             About
           </a>
-          <button 
-            x-on:click="contact = !contact" 
-            x-show="!contact"
-            class="hover:text-black transition-colors cursor-pointer lg:!block"
-            :class="{ 'text-black' : contact}">
+          <a 
+            href="{{ route('contact') }}" 
+            aria-label="Contact"
+            class="hover:text-black transition-colors {{ request()->routeIs('contact') ? 'text-black' : '' }}">
             Contact
-          </button>
+          </a>
         </div>
       </div>
 
@@ -49,5 +48,3 @@
   </div>
 
 </header>
-
-<x-layout.nav />

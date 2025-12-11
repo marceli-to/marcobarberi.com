@@ -29,71 +29,71 @@
 
       <article class="md:col-span-3">
         <h3>Butterfly Stroke</h3>
-        <div class="text-smoke">
-          Denis Rabaglia / Judy Davis, Florence Hunt, Samuel Streiff / Turnus Film CH and Zephyr Films GB<br>Feature / CH / GB 2026
+        <div class="text-smoke text-balance">
+          Denis&nbsp;Rabaglia / Judy&nbsp;Davis, Florence&nbsp;Hunt, Samuel&nbsp;Streiff<br>Turnus Film CH and Zephyr Films GB<br>Feature / CH / GB 2026
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-5">
         <h3>Barry and Me</h3>
-        <div class="text-smoke">
-          Markus Welter / Ulrich Tukur, Max Hubacher, Paco von Wyss, Alma Büchenbacher / Atlantis Pictures CH / MMC Zodiac DE<br>Feature / CH / DE 2026
+        <div class="text-smoke text-balance">
+          Markus&nbsp;Welter / Ulrich&nbsp;Tukur, Max&nbsp;Hubacher, Paco&nbsp;von&nbsp;Wyss, Alma&nbsp;Büchenbacher<br>Atlantis Pictures CH / MMC Zodiac DE<br>Feature / CH / DE 2026
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-9">
         <h3>On the High Seas</h3>
-        <div class="text-smoke">
-          Denis Rabaglia / Maud Wyler, Carlos Bardem, Michael Neuenschwander, Isaline Prevost, Nicolas Perot, Philippe Torreton / Alva Film CH / Galea Katz Filmleak ES<br>TV Series / CH / ES 2024
+        <div class="text-smoke text-balance">
+          Denis&nbsp;Rabaglia / Maud&nbsp;Wyler, Carlos&nbsp;Bardem, Michael&nbsp;Neuenschwander, Isaline&nbsp;Prevost, Nicolas&nbsp;Perot, Philippe Torreton<br>Alva Film CH / Galea Katz Filmleak ES<br>TV Series / CH / ES 2024
         </div>
       </article>
 
       <article class="md:col-span-3 md:mt-20">
         <h3>Jill</h3>
-        <div class="text-smoke">
-          Steven Hayes / Tom Pelphrey, Juliet Rylance, Zackary Arthur, Garret Waring, Dree Hemingway / Hugofilm Features CH / K5 DE<br>Feature / CH / CAN 2022
+        <div class="text-smoke text-balance">
+          Steven&nbsp;Hayes / Tom&nbsp;Pelphrey, Juliet&nbsp;Rylance, Zackary&nbsp;Arthur, Garret&nbsp;Waring, Dree&nbsp;Hemingway<br>Hugofilm Features CH / K5 DE<br>Feature / CH / CAN 2022
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-5 md:mt-20">
         <h3>40 & Climbing</h3>
-        <div class="text-smoke">
-          Bindu De Stoppani / Euridice Axen, Elena Di Ciochi, Anna Ferzetti, Irene Casagrande / Hugofilm Features<br>Feature / CH / ITA 2021
+        <div class="text-smoke text-balance">
+          Bindu&nbsp;De&nbsp;Stoppani / Euridice&nbsp;Axen, Elena&nbsp;Di&nbsp;Ciochi, Anna&nbsp;Ferzetti, Irene&nbsp;Casagrande<br>Hugofilm Features<br>Feature / CH / ITA 2021
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-9 md:mt-20">
         <h3>Miraggio</h3>
-        <div class="text-smoke">
-          Nina Stefanka / Sekou Coulibaly, Yassine, Bah Daouda, Issa Dembele / Cinédokké CH<br>Documentary / CH / ITA 2020
+        <div class="text-smoke text-balance">
+          Nina&nbsp;Stefanka / Sekou&nbsp;Coulibaly, Yassine, Bah&nbsp;Daouda, Issa&nbsp;Dembele<br>Cinédokké CH<br>Documentary / CH / ITA 2020
         </div>
       </article>
 
       <article class="md:col-span-3 md:mt-20">
         <h3>Finding Camille</h3>
-        <div class="text-smoke">
-          Bindu De Stoppani / Luigi Diberti, Anna Ferzetti, Nicola Mastroberardino / Hugofilm Features CH<br>Feature / CH / ITA / BIH 2017
+        <div class="text-smoke text-balance">
+          Bindu&nbsp;De&nbsp;Stoppani / Luigi&nbsp;Diberti, Anna&nbsp;Ferzetti, Nicola&nbsp;Mastroberardino<br>Hugofilm Features CH<br>Feature / CH / ITA / BIH 2017
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-5 md:mt-20">
         <h3>Carl Lutz</h3>
-        <div class="text-smoke">
-          Daniel Von Aarburg / György Konrad, Agens Heller, Leslie Blau, Agnes Hirschi / Docmine Productions CH<br>Documentary / HUN / ISR / USA / AUT 2014
+        <div class="text-smoke text-balance">
+          Daniel&nbsp;Von&nbsp;Aarburg / György&nbsp;Konrad, Agens&nbsp;Heller, Leslie&nbsp;Blau, Agnes&nbsp;Hirschi<br>Docmine Productions CH<br>Documentary / HUN / ISR / USA / AUT 2014
         </div>
       </article>
 
       <article class="md:col-span-3 md:col-start-9 md:mt-20">
         <h3>Victoria</h3>
-        <div class="text-smoke">
-          Men Lareida / Franciska Farkas, Zsolt Nagy, Angela Stefanovics / Hesse Greutert Film CH / Proton HU<br>Feature / CH / HUN 2014
+        <div class="text-smoke text-balance">
+          Men&nbsp;Lareida / Franciska&nbsp;Farkas, Zsolt&nbsp;Nagy, Angela&nbsp;Stefanovics<br>Hesse Greutert Film CH / Proton HU<br>Feature / CH / HUN 2014
         </div>
       </article>
 
       <article class="md:col-span-3 md:mt-20">
         <h3>Cannabis</h3>
-        <div class="text-smoke">
-          Niklaus Hilber / Joel Basman, Hanspeter Müller, Deleila Piasko, Jean Pierre Cornu / Vega Film CH<br>Feature / CH 2006
+        <div class="text-smoke text-balance">
+          Niklaus&nbsp;Hilber / Joel&nbsp;Basman, Hanspeter&nbsp;Müller, Deleila&nbsp;Piasko, Jean&nbsp;Pierre&nbsp;Cornu<br>Vega Film CH<br>Feature / CH 2006
         </div>
       </article>
       

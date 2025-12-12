@@ -1,4 +1,6 @@
 @extends('app')
+@section('title', 'About')
+@section('description', 'About Marco Barberi — biography and selected work.')
 @section('content')
 <div class="relative px-20 pb-20 lg:px-0">
 

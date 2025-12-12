@@ -1,4 +1,6 @@
 @extends('app')
+@section('title', 'Contact')
+@section('description', 'Contact details for Marco Barberi (D.o.P. / S.C.S.) and representation info.')
 @section('content')
 <div class="relative px-20 pb-20 lg:px-0">
   <h1 class="text-smoke text-sm lg:mb-4">

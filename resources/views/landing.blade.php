@@ -1,4 +1,6 @@
 @extends('app')
+@section('title', env('APP_NAME'))
+@section('description', 'Marco Barberi, a classical secondo, grew up in Italy and Switzerland. He graduated from the Zurich University of the Arts and studied cinematography at the American Film Institute in Los Angeles.')
 @section('content')
 
 @php

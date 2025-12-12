@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ env('APP_NAME') }}</title>
-<meta name="description" content="{{ env('APP_DESCRIPTION') }}">
-<meta property="og:title" content="{{ env('APP_NAME') }}">
-<meta property="og:description" content="{{ env('APP_DESCRIPTION') }}">
-<meta property="og:url" content="{{ url()->current()}} ">
+<title>@hasSection('title')@yield('title')@else{{ env('APP_NAME') }}@endif</title>
+<meta name="description" content="@hasSection('description')@yield('description')@else{{ env('APP_DESCRIPTION') }}@endif">
+<meta property="og:title" content="@hasSection('title')@yield('title')@else{{ env('APP_NAME') }}@endif">
+<meta property="og:description" content="@hasSection('description')@yield('description')@else{{ env('APP_DESCRIPTION') }}@endif">
+<meta property="og:url" content="{{ url()->current() }}">
 <meta property="og:site_name" content="{{ env('APP_NAME') }}">
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="theme-color" content="#ffffff">

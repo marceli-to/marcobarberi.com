@@ -6,6 +6,28 @@
 @php
 $showcases = [
   [
+    'title' => 'Barry and Me',
+    'src_high' => '/video/barry-and-me.mp4',
+    'src_low' => '/video/barry-and-me-720p.mp4',
+    'aspect' => 'aspect-[1920/790]',
+    'poster' => '/video/barry-and-me.jpg',
+    'info' => 'CH / DE 2026',
+    'cast' => 'Ulrich&nbsp;Tukur, Max&nbsp;Hubacher, Paco&nbsp;von&nbsp;Wyss, Alma&nbsp;Büchenbacher',
+    'production' => 'Atlantis&nbsp;Pictures&nbsp;CH / MMC&nbsp;Zodiac&nbsp;DE',
+    'director' => 'Markus&nbsp;Welter'
+  ],
+  [
+    'title' => 'Viktoria',
+    'src_high' => '/video/viktoria.mp4',
+    'src_low' => '/video/viktoria-720p.mp4',
+    'aspect' => 'aspect-[1920/790]',
+    'poster' => '/video/viktoria.jpg',
+    'info' => 'HU / CH 2014',
+    'cast' => 'Franciska&nbsp;Farkas, Zsolt&nbsp;Nagy, Angela&nbsp;Stefanovics',
+    'production' => 'Hesse&nbsp;Greutert&nbsp;Film&nbsp;CH / Proton&nbsp;HU',
+    'director' => 'Men&nbsp;Lareida'
+  ],
+  [
     'title' => 'Jill',
     'src_high' => '/video/jill-trailer.mp4',
     'src_low' => '/video/jill-trailer-720p.mp4',

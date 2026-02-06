@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Laravel 12 application (marcobarberi.com) - a minimal portfolio/showcase website for film and video projects. Built with Livewire components, Tailwind CSS, and Alpine.js, focusing on a clean, component-based architecture.
+This is a Laravel 12 application (marcobarberi.com) - a minimal portfolio/showcase website for film and video projects. Built with Tailwind CSS and Alpine.js, focusing on a clean, component-based architecture.
 
 ## Development Commands
 
@@ -102,7 +102,6 @@ The `showcase.blade.php` component demonstrates the project's approach:
 - **Vite** - Modern asset bundler
 - **Tailwind CSS** - Utility-first CSS framework
 - **Alpine.js** - Lightweight JavaScript framework for interactivity
-- **Livewire v3.5** - Real-time components (installed but not currently used)
 - Blade templating engine
 
 ## Important Notes

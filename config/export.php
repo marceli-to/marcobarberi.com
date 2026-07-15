@@ -67,7 +67,7 @@ return [
      * You can skip these by adding a `--skip-{name}` flag to the command.
      */
     'after' => [
-        'fix_urls' => 'find dist -type f -name "*.html" -exec sed -i "" "s|https://marcobarberi\.com\.test/|/|g" {} +',
+        'fix_urls' => 'find dist -type f -name "*.html" -exec sed -i "" -e "s|https://marcobarberi\.com\.test/|/|g" -e "s|https://marcobarberi\.com\.test|https://marcobarberi.com|g" {} +',
         // 'minify_html' => 'find dist -type f -name "*.html" -exec sh -c \'tr -d "\n" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"\' _ {} \;',
         'videos' => 'mkdir -p dist/video && cp -r public/video/*.mp4 dist/video/',
         // 'deploy' => '/usr/local/bin/netlify deploy --prod',

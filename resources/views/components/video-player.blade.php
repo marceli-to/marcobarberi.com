@@ -9,15 +9,23 @@
 
 <div class="relative {{ $aspect }} w-full bg-black group" data-video-player>
 
+  {{--
+    Source is chosen in JS (resources/js/modules/video-source.js) based on the
+    viewport width. The `media` attribute on <source> is NOT honored inside
+    <video> by browsers, so a media-query source split has to be done manually.
+    No initial src/source is set to prevent the browser from pre-fetching the
+    wrong (large) file before JS runs.
+  --}}
   <video
     poster="{{ $poster }}"
     class="w-full h-full object-cover showcase-video"
     data-video
+    data-src-high="{{ $src_high }}"
+    data-src-low="{{ $src_low }}"
+    preload="metadata"
     {{ $loop ? 'loop' : '' }}
     {{ $muted ? 'data-muted' : '' }}
     playsinline>
-    <source src="{{ $src_high }}" media="(min-width: 1024px)" type="video/mp4">
-    <source src="{{ $src_low }}" type="video/mp4">
   </video>
 
   {{-- Controls overlay --}}

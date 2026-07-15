@@ -20,3 +20,4 @@ INSTALL.txt
 /public/robots.txt
 /public/video
 /dist
+/.claude/settings.local.json

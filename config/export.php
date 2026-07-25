@@ -14,7 +14,13 @@ return [
      *
      * For example: "about", "posts/featured"
      */
-    'paths' => [],
+    'paths' => [
+        // Vimeo delivery test, both variants. Not linked from the public
+        // navigation, so the crawler would never reach them on its own.
+        // Both carry a noindex tag.
+        'vimeo',
+        'vimeo-preload',
+    ],
 
     /*
      * Files and folders that should be included in the build. Expects

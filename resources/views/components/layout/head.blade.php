@@ -19,4 +19,5 @@
 <meta name="apple-mobile-web-app-title" content="Marco Barberi" />
 <link rel="manifest" href="/site.webmanifest" />
 @vite('resources/css/app.css')
+@yield('meta')
 </head>

@@ -1,6 +1,17 @@
 {
+  "_effect-fade-!~{004}~.js": {
+    "file": "assets/effect-fade-Dsb6oYJR.css",
+    "src": "_effect-fade-!~{004}~.js"
+  },
+  "_effect-fade-DanXe8mC.js": {
+    "file": "assets/effect-fade-DanXe8mC.js",
+    "name": "effect-fade",
+    "css": [
+      "assets/effect-fade-Dsb6oYJR.css"
+    ]
+  },
   "resources/css/app.css": {
-    "file": "assets/app-CAt2SgtO.css",
+    "file": "assets/app-B3Yf4H2P.css",
     "src": "resources/css/app.css",
     "isEntry": true
   },
@@ -13,12 +24,21 @@
     "src": "resources/css/fonts/SharpSans-Medium.woff2"
   },
   "resources/js/app.js": {
-    "file": "assets/app-DnILpZdn.js",
+    "file": "assets/app-Cqc1uO7R.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
-    "css": [
-      "assets/app-Dsb6oYJR.css"
+    "imports": [
+      "_effect-fade-DanXe8mC.js"
+    ]
+  },
+  "resources/js/vimeo.js": {
+    "file": "assets/vimeo-jjQCDPkF.js",
+    "name": "vimeo",
+    "src": "resources/js/vimeo.js",
+    "isEntry": true,
+    "imports": [
+      "_effect-fade-DanXe8mC.js"
     ]
   }
 }

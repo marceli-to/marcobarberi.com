@@ -73,7 +73,17 @@ return [
      * You can skip these by adding a `--skip-{name}` flag to the command.
      */
     'after' => [
-        'fix_urls' => 'find dist -type f -name "*.html" -exec sed -i "" -e "s|https://marcobarberi\.com\.test/|/|g" -e "s|https://marcobarberi\.com\.test|https://marcobarberi.com|g" {} +',
+        /*
+         * The first expression must stay first. og:url has to be an absolute
+         * URL, but the generic rule below strips the host from anything with a
+         * path (".../about" -> "/about"), which left og:url relative on every
+         * subpage. Rewriting og:url to the production host up front means the
+         * generic rules no longer find a `.test` host inside that tag.
+         *
+         * `[^>]*` stands in for `" content="` so no quotes are needed here,
+         * and it cannot run past the end of the tag.
+         */
+        'fix_urls' => 'find dist -type f -name "*.html" -exec sed -i "" -e "s|og:url\([^>]*\)https://marcobarberi\.com\.test|og:url\1https://marcobarberi.com|g" -e "s|https://marcobarberi\.com\.test/|/|g" -e "s|https://marcobarberi\.com\.test|https://marcobarberi.com|g" {} +',
         // 'minify_html' => 'find dist -type f -name "*.html" -exec sh -c \'tr -d "\n" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"\' _ {} \;',
         'videos' => 'mkdir -p dist/video && cp -r public/video/*.mp4 dist/video/',
         // 'deploy' => '/usr/local/bin/netlify deploy --prod',

@@ -17,6 +17,8 @@ yarn-error.log
 /.idea
 /.vscode
 INSTALL.txt
+# Contains server credentials — this repo is public
+/install.md
 /public/robots.txt
 /public/video
 /dist

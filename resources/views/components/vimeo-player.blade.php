@@ -10,11 +10,8 @@
 ])
 
 {{--
-  Vimeo variant of components/video-player.blade.php.
-
-  The control bar below is an exact copy of the native player's markup and
-  keeps the same data-* hooks, so both variants look and behave identically —
-  only the delivery differs (adaptive HLS from Vimeo vs. a progressive MP4).
+  The film player. Delivery is Vimeo (adaptive HLS), but the control bar below
+  is the site's own markup — the embed runs with controls:false.
 
   The iframe is NOT rendered here. modules/vimeo-player.js creates it on
   demand so that loading the page does not start four Vimeo players at once.
@@ -108,7 +105,9 @@
     </div>
   </div>
 
-  {{-- Timing readout, only rendered with ?debug --}}
+  {{-- Timing readout, only rendered with ?debug. Local development only —
+       the live site is a static export, where this is always evaluated to
+       false at build time. --}}
   @if(request()->has('debug'))
     <div class="absolute top-0 left-0 bg-black/70 text-white text-sm px-10 py-6 tabular-nums z-10">
       <span data-timing>waiting…</span>

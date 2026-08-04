@@ -1,7 +1,7 @@
 @props([
   'title' => '',
-  'src_high' => '',
-  'src_low' => '',
+  'vimeo_id' => '',
+  'vimeo_hash' => '',
   'aspect' => 'aspect-[16/9]',
   'poster' => '',
   'info' => '',
@@ -10,14 +10,16 @@
   'director' => '',
 ])
 
-<article 
-  class="mb-60 lg:mb-0 lg:relative" 
+{{-- Vimeo variant of components/showcase.blade.php — identical apart from the player. --}}
+<article
+  class="mb-60 lg:mb-0 lg:relative"
   x-data="{ show_info: false }">
 
   <div :class="{ 'pointer-events-none': show_info }">
-    <x-video-player
-      :src_high="$src_high"
-      :src_low="$src_low"
+    <x-vimeo-player
+      :vimeo_id="$vimeo_id"
+      :vimeo_hash="$vimeo_hash"
+      :title="$title"
       :aspect="$aspect"
       :poster="$poster"
       :loop="true"

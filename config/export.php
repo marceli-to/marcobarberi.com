@@ -15,11 +15,7 @@ return [
      * For example: "about", "posts/featured"
      */
     'paths' => [
-        // Vimeo delivery test, both variants. Not linked from the public
-        // navigation, so the crawler would never reach them on its own.
-        // Both carry a noindex tag.
-        'vimeo',
-        'vimeo-preload',
+        //
     ],
 
     /*
@@ -85,7 +81,11 @@ return [
          */
         'fix_urls' => 'find dist -type f -name "*.html" -exec sed -i "" -e "s|og:url\([^>]*\)https://marcobarberi\.com\.test|og:url\1https://marcobarberi.com|g" -e "s|https://marcobarberi\.com\.test/|/|g" -e "s|https://marcobarberi\.com\.test|https://marcobarberi.com|g" {} +',
         // 'minify_html' => 'find dist -type f -name "*.html" -exec sh -c \'tr -d "\n" < "$1" > "$1.tmp" && mv "$1.tmp" "$1"\' _ {} \;',
-        'videos' => 'mkdir -p dist/video && cp -r public/video/*.mp4 dist/video/',
+        /*
+         * The films stream from Vimeo, so the MP4s in `public/video` are no
+         * longer part of the site — only the poster JPGs next to them are.
+         * `exclude_file_patterns` above keeps the MP4s out of the export.
+         */
         // 'deploy' => '/usr/local/bin/netlify deploy --prod',
     ],
 

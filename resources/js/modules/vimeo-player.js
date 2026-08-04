@@ -1,13 +1,11 @@
 // -------------------------------------------------------
-// Vimeo-backed showcase player (TEST)
+// Vimeo-backed showcase player
 //
-// Drop-in counterpart to modules/video-player.js. Instead of driving a native
-// <video> element it drives a Vimeo embed through the official Player SDK,
-// while keeping the exact same control markup and data-* hooks so the two
-// variants can be compared side by side.
+// Drives a Vimeo embed through the official Player SDK, behind the site's own
+// control bar — the embed itself runs with controls:false.
 //
-// Why Vimeo: the self-hosted MP4s are 70-220 MB and are delivered as a
-// progressive download, so the browser has to pull the whole file through a
+// Why Vimeo: the films used to be self-hosted MP4s of 70-220 MB, delivered as
+// a progressive download, so the browser had to pull the whole file through a
 // single connection. Vimeo serves adaptive HLS/DASH, which starts on a low
 // rendition within a few hundred kilobytes and steps up from there.
 //
@@ -24,13 +22,6 @@ const BREAKPOINT = 1024;
 const registry = new Map();
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-// Which variant of the test page this is. /vimeo-preload marks its showcase
-// wrapper with data-preload; /vimeo does not. Read once — it cannot change
-// without a page load.
-export const PRELOAD = document
-  .querySelector('[data-showcases]')
-  ?.hasAttribute('data-preload') ?? false;
 
 export function playerFor(container) {
   return registry.get(container);
@@ -419,7 +410,7 @@ export class VimeoShowcasePlayer {
 
     console.log(
       `[vimeo] ${label}: first frame ${fromPlay} ms after play` +
-      ` (embed was ${embedAge} ms old, preload variant: ${PRELOAD}, prewarmed: ${this.#prewarmed})`
+      ` (embed was ${embedAge} ms old, prewarmed: ${this.#prewarmed})`
     );
 
     const readout = this.#container.querySelector('[data-timing]');
@@ -525,18 +516,14 @@ export class VimeoShowcasePlayer {
 //
 // Instantiate the controllers straight away (cheap — no iframe yet). On
 // mobile there is no swiper to orchestrate playback, so prepare each embed
-// shortly before it scrolls into view; the desktop swiper drives loading
-// itself via swiper-vimeo.js.
-//
-// How far that preparation goes follows the variant, so that the comparison
-// between /vimeo and /vimeo-preload also holds on a phone: the preload
-// variant buffers the opening seconds, the plain one only builds the embed.
+// shortly before it scrolls into view — prewarm(), i.e. buffer the opening
+// seconds, matching what the desktop swiper does via swiper.js.
 // -------------------------------------------------------
 document.querySelectorAll('[data-vimeo-player]').forEach((container) => {
   new VimeoShowcasePlayer(container);
 });
 
-// Handy while evaluating this page: inspect players from the console.
+// Handy for debugging: inspect players from the console.
 window.vimeoPlayers = registry;
 
 if (window.innerWidth < BREAKPOINT && 'IntersectionObserver' in window) {
@@ -545,9 +532,7 @@ if (window.innerWidth < BREAKPOINT && 'IntersectionObserver' in window) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         const player = playerFor(entry.target);
-        if (player) {
-          (PRELOAD ? player.prewarm() : player.ensureLoaded()).catch(() => {});
-        }
+        if (player) player.prewarm().catch(() => {});
         observer.unobserve(entry.target);
       });
     },

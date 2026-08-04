@@ -1,30 +1,32 @@
+// -------------------------------------------------------
+// Showcase swiper (desktop only)
+//
+// Playback is orchestrated through the Vimeo Player SDK. Because the embeds
+// are created lazily, this module also decides *when* to create them:
+// the active slide loads immediately, the next one is warmed up right after,
+// and the rest wait until they are actually shown.
+// -------------------------------------------------------
+
 import Swiper from 'swiper';
 import { Navigation, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 
+import { playerFor } from './vimeo-player';
+
 const BREAKPOINT = 1024;
 const SWIPER_SELECTOR = '.swiper';
 
-// Cache DOM elements once
-const prevBtn = document.querySelector('.swiper-btn-prev');
-const nextBtn = document.querySelector('.swiper-btn-next');
-
 let swiper = null;
-
-// Store original poster URLs for each video
-const videoPosterMap = new Map();
 
 // -------------------------------------------------------
 // Update Alpine.js slide index
 // -------------------------------------------------------
 function updateAlpineSlideIndex(index) {
-  // Find the Alpine component and update activeSlide
   const alpineEl = document.querySelector('[x-data*="activeSlide"]');
   if (alpineEl && window.Alpine) {
     Alpine.store('showcase', { activeSlide: index });
-    // Also update the component's data directly
     const alpineData = Alpine.$data(alpineEl);
     if (alpineData) {
       alpineData.activeSlide = index;
@@ -33,58 +35,51 @@ function updateAlpineSlideIndex(index) {
 }
 
 // -------------------------------------------------------
-// Handle video playback on slide change
+// Resolve the player controller sitting inside a swiper slide
+// -------------------------------------------------------
+function playerInSlide(slide) {
+  const container = slide?.querySelector('[data-vimeo-player]');
+  return container ? playerFor(container) : null;
+}
+
+// -------------------------------------------------------
+// Handle playback on slide change
 // -------------------------------------------------------
 function handleVideoPlayback() {
   if (!swiper) return;
 
-  // Pause and reset all videos
-  const allVideos = document.querySelectorAll('.showcase-video');
-  allVideos.forEach(video => {
-    video.pause();
-    video.currentTime = 0; // Reset to beginning
+  const active = playerInSlide(swiper.slides[swiper.activeIndex]);
 
-    // Dispatch custom event for Alpine.js to sync state
-    video.dispatchEvent(new Event('pause'));
+  // Pause and rewind every player that has actually been created. Untouched
+  // slides have no embed yet, so there is nothing to stop. The active one is
+  // skipped on purpose: resetting it and starting it again in the same tick
+  // races two async SDK commands against each other.
+  swiper.slides.forEach((slide) => {
+    const player = playerInSlide(slide);
+    if (player && player !== active && player.isLoaded) player.reset();
   });
 
-  // Play the active slide's video (use activeIndex for loop mode)
-  const activeSlide = swiper.slides[swiper.activeIndex];
-  const activeVideo = activeSlide?.querySelector('.showcase-video');
+  if (!active) return;
 
-  if (activeVideo) {
-    // Remove poster attribute on desktop to prevent it from showing
-    activeVideo.removeAttribute('poster');
-
-    // Play the video
-    activeVideo.play().catch(err => {
-      console.log('Autoplay prevented:', err);
-    });
-  }
+  // Muted autoplay: browsers allow it, and the poster stays up until the
+  // first frame arrives so there is never an empty black box.
+  active.play().then(() => prewarmNext());
 }
 
 // -------------------------------------------------------
-// Store poster URLs before removing them
+// Prepare the next slide while the current one plays: prewarm() builds the
+// iframe, resolves the stream manifest and pushes the opening seconds into
+// the buffer, so switching starts near-instantly.
+//
+// Only the *next* slide, and only once the active one is already playing:
+// preparing everything up front would put four players on the network at the
+// same time and slow down the one the viewer is looking at.
 // -------------------------------------------------------
-function storePosterUrls() {
-  const allVideos = document.querySelectorAll('.showcase-video');
-  allVideos.forEach(video => {
-    const posterUrl = video.getAttribute('poster');
-    if (posterUrl && !videoPosterMap.has(video)) {
-      videoPosterMap.set(video, posterUrl);
-    }
-  });
-}
-
-// -------------------------------------------------------
-// Restore poster URLs
-// -------------------------------------------------------
-function restorePosterUrls() {
-  videoPosterMap.forEach((posterUrl, video) => {
-    video.setAttribute('poster', posterUrl);
-    video.pause();
-    video.currentTime = 0;
-  });
+function prewarmNext() {
+  if (!swiper) return;
+  const nextIndex = (swiper.activeIndex + 1) % swiper.slides.length;
+  const next = playerInSlide(swiper.slides[nextIndex]);
+  if (next) next.prewarm().catch(() => {});
 }
 
 // -------------------------------------------------------
@@ -93,15 +88,11 @@ function restorePosterUrls() {
 function initSwiper() {
   const isDesktop = window.innerWidth >= BREAKPOINT;
 
-  // Create swiper
   if (isDesktop && !swiper) {
-    // Store poster URLs before we start removing them
-    storePosterUrls();
-
     swiper = new Swiper(SWIPER_SELECTOR, {
       modules: [Navigation, EffectFade],
       loop: true,
-      effect: "fade",
+      effect: 'fade',
       autoHeight: true,
       fadeEffect: {
         crossFade: true,
@@ -112,14 +103,11 @@ function initSwiper() {
       },
       on: {
         init: (swiperInstance) => {
-          // setTimeout(updateButtonPosition, 0);
           setTimeout(handleVideoPlayback, 0);
-          // Sync with Alpine.js controls
           updateAlpineSlideIndex(swiperInstance.realIndex);
         },
         slideChange: (swiperInstance) => {
           handleVideoPlayback();
-          // Sync with Alpine.js controls
           updateAlpineSlideIndex(swiperInstance.realIndex);
         },
       },
@@ -128,13 +116,19 @@ function initSwiper() {
     return;
   }
 
-  // Destroy swiper
   if (!isDesktop && swiper) {
     swiper.destroy(true, true);
     swiper = null;
 
-    // Restore poster attributes on mobile
-    restorePosterUrls();
+    // Back to the stacked mobile layout: stop everything and show posters
+    // again so nothing keeps streaming off screen.
+    document.querySelectorAll('[data-vimeo-player]').forEach((container) => {
+      const player = playerFor(container);
+      if (player?.isLoaded) {
+        player.reset();
+        player.showPoster();
+      }
+    });
   }
 }
 

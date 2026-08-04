@@ -71,16 +71,21 @@ php artisan optimize
 
 - **resources/views/** - Blade templates and views
   - `app.blade.php` - Main layout file
-  - `landing.blade.php` - Home page with film showcases
+  - `landing.blade.php` - Home page with film showcases; also holds the film list
   - **components/** - Reusable Blade components
     - `showcase.blade.php` - Film/video showcase component with expandable details
+    - `vimeo-player.blade.php` - Player markup and controls (iframe is built in JS)
     - **layout/** - Layout-related components
 
 - **resources/css/** - Stylesheets
   - `app.css` - Main Tailwind CSS file with custom styles
 
+- **resources/js/modules/** - Frontend behaviour
+  - `vimeo-player.js` - Drives the Vimeo embeds behind the site's own controls
+  - `swiper.js` - Desktop slider; decides when each embed gets built
+
 - **routes/** - Application routes
-  - `web.php` - Web routes (currently just home route to landing view)
+  - `web.php` - Three routes: `/`, `/about`, `/contact`
 
 ### Key Patterns
 
@@ -91,10 +96,18 @@ php artisan optimize
 
 **Showcase Component Pattern**
 The `showcase.blade.php` component demonstrates the project's approach:
-- Props: `title`, `src`, `poster`, `info`, `data` (array of label/text pairs)
+- Props: `title`, `vimeo_id`, `vimeo_hash`, `aspect`, `poster`, `info`, `cast`, `production`, `director`
 - Alpine.js for interactive state management (collapsible details)
 - Tailwind utility classes applied directly to elements
 - Loop-based rendering for flexible data structures
+
+**Video Delivery**
+The films stream from Vimeo (adaptive HLS) through the official Player SDK,
+behind the site's own control bar — the embed runs with `controls:false`.
+Iframes are created lazily: the active slide first, the next one prewarmed
+while it plays, the rest only when shown. Add a film by pasting its Vimeo ID
+into the `$showcases` array in `landing.blade.php`. The MP4s still sitting in
+`public/video/` are unused leftovers; only the poster JPGs next to them matter.
 
 ### Frontend Stack
 
@@ -110,4 +123,7 @@ The `showcase.blade.php` component demonstrates the project's approach:
 - Focus on clean, maintainable component architecture
 - All styling uses Tailwind CSS utility classes
 - Alpine.js handles client-side interactivity
-- Single route application (home page only)
+- Three routes: `/`, `/about`, `/contact`
+- **The live site is a static export, not a running Laravel app.** Blade or
+  Vite changes only reach production after `php artisan export` (config in
+  `config/export.php`) and an upload of the changed `dist/` files to Hostpoint.

@@ -51,7 +51,7 @@ $showcases = [
   ],
   [
     'title' => 'Barry and Me',
-    'vimeo_id' => '', // TODO: noch nicht auf Vimeo hochgeladen
+    'vimeo_id' => '1214195226',
     'vimeo_hash' => '',
     'aspect' => 'aspect-[1920/790]',
     'poster' => '/video/barry-and-me.jpg',
@@ -62,7 +62,7 @@ $showcases = [
   ],
   [
     'title' => 'Viktoria',
-    'vimeo_id' => '', // TODO: noch nicht auf Vimeo hochgeladen
+    'vimeo_id' => '1214193782',
     'vimeo_hash' => '',
     'aspect' => 'aspect-[1920/790]',
     'poster' => '/video/viktoria.jpg',

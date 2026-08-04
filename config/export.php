@@ -36,6 +36,7 @@ return [
         '/\.php$/',
         '/mix-manifest\.json$/',
         '/\.mp4$/',
+        '/\.DS_Store$/',
     ],
 
     /*

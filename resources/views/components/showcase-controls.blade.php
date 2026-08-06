@@ -2,7 +2,9 @@
   'showcases' => []
 ])
 
-<div class="hidden lg:block mt-20 px-0 relative" x-data="{ activeSlide: 0, show_info: false }">
+{{-- The film details below the player are always on show; only the slide
+     navigation lives up here with them. --}}
+<div class="hidden lg:block mt-20 px-0 relative" x-data="{ activeSlide: 0 }">
   <div class="flex relative">
     <div class="flex flex-col w-1/2 2xl:w-1/3 pr-10 justify-start items-start">
 
@@ -14,38 +16,13 @@
         </h2>
       </template>
 
-      <div
-        x-collapse
-        x-show="show_info"
-        x-transition:enter="transition ease-out duration-300"
-        x-transition:enter-start="opacity-0"
-        x-transition:enter-end="opacity-100"
-        x-transition:leave="transition ease-in duration-0"
-        x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0"
-        class="text-lg leading-none">
+      <div class="text-lg leading-none">
         <template x-for="(showcase, index) in {{ json_encode($showcases) }}" :key="index">
           <em x-show="activeSlide === index" x-text="showcase.info"></em>
         </template>
       </div>
 
       <div class="flex items-center gap-x-10 absolute right-0 min-w-auto z-10">
-        <button
-          @click.stop.prevent="show_info = !show_info"
-          type="button"
-          class="cursor-pointer shrink-0">
-          <svg
-            width="35"
-            height="35"
-            viewBox="0 0 35 35"
-            fill="none"
-            class="block w-35 h-35 rotate-0 transition-transform"
-            :class="{ '!-rotate-45': show_info }">
-            <path d="M0 17.2422H34.484" stroke="#707070"/>
-            <path d="M17.2417 0L17.2417 34.484" stroke="#707070"/>
-          </svg>
-        </button>
-
         <x-swiper.button class="block w-auto h-32 swiper-btn-prev">
           <x-icons.chevron-left class="w-auto h-full" />
         </x-swiper.button>
@@ -56,16 +33,7 @@
       </div>
     </div>
 
-    <div
-      x-collapse
-      x-show="show_info"
-      x-transition:enter="transition ease-out duration-300"
-      x-transition:enter-start="opacity-0"
-      x-transition:enter-end="opacity-100"
-      x-transition:leave="transition ease-in duration-0"
-      x-transition:leave-start="opacity-100"
-      x-transition:leave-end="opacity-0"
-      class="w-1/2 2xl:w-2/3">
+    <div class="w-1/2 2xl:w-2/3">
 
       <template x-for="(showcase, index) in {{ json_encode($showcases) }}" :key="index">
         <div x-show="activeSlide === index" class="flex flex-row gap-y-16 pr-40 lg:pr-105">

@@ -61,8 +61,10 @@ function handleVideoPlayback() {
 
   if (!active) return;
 
-  // Muted autoplay: browsers allow it, and the poster stays up until the
-  // first frame arrives so there is never an empty black box.
+  // Autoplay always starts muted — browsers allow nothing else — and the
+  // player switches the sound on by itself as soon as the viewer has
+  // interacted with the page once. The poster stays up until the first frame
+  // arrives, so there is never an empty black box.
   active.play().then(() => prewarmNext());
 }
 
@@ -91,7 +93,15 @@ function initSwiper() {
   if (isDesktop && !swiper) {
     swiper = new Swiper(SWIPER_SELECTOR, {
       modules: [Navigation, EffectFade],
-      loop: true,
+
+      // Rewind, not loop. Both let "next" wrap from the last film back to the
+      // first, but `loop` does it by relocating slides in the DOM — and a
+      // moved <iframe> is reloaded by the browser, which leaves every Vimeo
+      // player of an already seen film talking to a dead window ("target
+      // origin does not match the recipient window's origin") and silently
+      // unable to play. `rewind` just slides back, touching no DOM.
+      rewind: true,
+
       effect: 'fade',
       autoHeight: true,
       fadeEffect: {

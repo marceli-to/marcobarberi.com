@@ -5,7 +5,6 @@
   'aspect' => 'aspect-[16/9]',
   'poster' => '',
   'loop' => true,
-  'muted' => false,
   'overscan' => '1.01',
 ])
 
@@ -24,8 +23,7 @@
   data-vimeo-hash="{{ $vimeo_hash }}"
   data-title="{{ $title }}"
   data-overscan="{{ $overscan }}"
-  @if($loop) data-loop @endif
-  @if($muted) data-muted @endif>
+  @if($loop) data-loop @endif>
 
   {{--
     The iframe is sized in JS to cover this box: the Vimeo masters are 16:9
@@ -47,6 +45,22 @@
       style="background-image: url('{{ $poster }}')"
       data-poster></div>
   @endif
+
+  {{--
+    Sound invitation.
+
+    Shown only when the browser has actually refused to start the film with
+    sound (see modules/vimeo-player.js) — the one click it takes to lift that
+    refusal is worth asking for. It sits above the control bar and points at
+    the sound button there, and once the sound is on it never comes back.
+  --}}
+  <button
+    type="button"
+    class="absolute bottom-80 right-20 z-10 flex items-center gap-x-10 px-14 py-10 bg-black/60 text-[#EAEAEA] text-md leading-none cursor-pointer opacity-0 pointer-events-none transition-opacity duration-300 hover:bg-black/80"
+    data-sound-hint>
+    <x-icons.sound-off class="block w-24 h-auto" />
+    <span>Sound on</span>
+  </button>
 
   {{-- Buffering indicator --}}
   <div
